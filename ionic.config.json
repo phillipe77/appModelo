@@ -1,0 +1,7 @@
+{
+  "name": "appAulaTabs",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

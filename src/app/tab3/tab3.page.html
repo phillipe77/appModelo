@@ -1,17 +1,30 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      Habilidades
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+
+      <img src="data:image/png;base64,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">
+
+      <ion-list>
+        <ion-item>
+          <ion-label> E-mail: allisson.almeida@undb.edu.br  </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label> WhatsApp: (98) 988469152</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Instagram: allissonjorge</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Facebook: allissonjorge</ion-label>
+        </ion-item>
+      </ion-list>
+    
+
 </ion-content>

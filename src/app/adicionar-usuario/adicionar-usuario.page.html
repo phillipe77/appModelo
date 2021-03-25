@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-title *ngIf="!id" >Adicionar Usuário</ion-title>
+    <ion-title *ngIf="id" >Editar Usuário</ion-title>
+
+      <ion-buttons slot="start" (click)="voltarTelaLogin()">
+        <ion-button color="primary"></ion-button>
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+  
+    <ion-item>
+      <ion-label position="floating">Nome do Usuário</ion-label>
+      <ion-input type="text" [(ngModel)]="nome"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">E-mail do Usuário</ion-label>
+      <ion-input type="text" [(ngModel)]="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Senha</ion-label>
+      <ion-input type="password" [(ngModel)]="senha"></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-button *ngIf="!id" expand="block" padding color="success" (click)="cadastrarUsuario()">Cadastrar</ion-button>
+
+  <ion-button *ngIf="id" expand="block" padding color="primary" (click)="editarUsuario()">Editar</ion-button>
+
+</ion-content>

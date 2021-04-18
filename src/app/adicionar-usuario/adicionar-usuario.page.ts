@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
+import { Post } from 'src/services/post';
 
 @Component({
   selector: 'app-adicionar-usuario',
@@ -9,12 +11,31 @@ import { Router } from '@angular/router';
 export class AdicionarUsuarioPage implements OnInit {
 
   nome: string = "";
-  email: string = "";
+  usuario: string = "";
   senha: string = "";
 
-  constructor( private router: Router ) { }
+  constructor( private router: Router, 
+                private provider: Post , 
+                public toastController: ToastController
+              ) { }
 
   ngOnInit() {
+  }
+
+  async mensagemSalvar() {
+    const toast = await this.toastController.create({
+      message: 'Salvo com sucesso',
+      duration: 2000
+    });
+    toast.present();
+  }
+
+  async mensagemValor() {
+    const toast = await this.toastController.create({
+      message: 'Informe um campo',
+      duration: 2000
+    });
+    toast.present();
   }
 
   voltarTelaLogin(){
@@ -22,17 +43,40 @@ export class AdicionarUsuarioPage implements OnInit {
   }
 
   cadastrarUsuario(){
+    
     if( this.nome == ""){
-      alert("Faltou o nome");
+      this.mensagemValor();
     }
-    if( this.email == ""){
-      alert("Faltou o email");
+
+    if( this.usuario == ""){
+      this.mensagemValor();
     }
+    
     if( this.senha == ""){
-      alert("Faltou o senha");
+      this.mensagemValor();
     }
-    console.log(this.nome);
-    console.log(this.email);
-    console.log(this.senha);
+
+    //Se todo os campos estiverem certinhos 
+    if( this.nome != "" && this.usuario != ""  && this.senha != "" )
+    {
+      return new Promise( resolve => {
+
+        let dados = {
+          requisicao : 'add',
+          nome : this.nome,
+          usuario : this.usuario,
+          senha : this.senha
+        };
+
+        this.provider.dadosApi(dados,'api.php').subscribe(data => {
+          this.router.navigate(['/']);
+          this.mensagemSalvar();
+        })
+
+      });
+
+    }
+
+
   }
 }

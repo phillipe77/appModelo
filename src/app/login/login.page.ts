@@ -90,7 +90,7 @@ export class LoginPage implements OnInit {
           //this.router.navigate(['/dashboard']);
           //this.mensagemLoginOk();
 
-        })
+        });
 
       });
 
